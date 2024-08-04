@@ -13,33 +13,28 @@ extension TabBarController {
 		let tabBarController = TabBarController()
 		
 		tabBarController.tabs = [
-			.init(
-				title: "First",
-				image: UIImage(systemName: "1.circle"),
-				identifier: "First Tab"
-			) {
-				return ViewController.makeWithBackgroundColor(.systemBlue, title: "\($0.title)")
+			UITab(
+				title: "UITableView",
+				image: UIImage(systemName: "list.bullet"),
+				identifier: "Debug Table View"
+			) { _ in
+				TableViewController()
 			},
-			.init(
-				title: "Second",
-				image: UIImage(systemName: "2.circle"),
-				identifier: "Second Tab"
-			) {
-				return ViewController.makeWithBackgroundColor(.systemGreen, title: "\($0.title)")
+			UITab(
+				title: "UIViewController",
+				image: UIImage(systemName: "list.bullet"),
+				identifier: "Debug View Controller"
+			) { _ in
+				UINavigationController(
+					rootViewController: ViewController.makeWithBackgroundColor(.systemPink, title: "View Controller")
+				)
 			},
-			.init(
-				title: "Third",
-				image: UIImage(systemName: "3.circle"),
-				identifier: "Third Tab"
-			) {
-				return ViewController.makeWithBackgroundColor(.systemOrange, title: "\($0.title)")
-			},
-			makeTabGroup(),
 			UISearchTab { _ in
 				UINavigationController(
 					rootViewController: ViewController.makeWithBackgroundColor(.systemMint, title: "Search")
 				)
-			}
+			},
+			makeTabGroup()
 		]
 		
 		return tabBarController
